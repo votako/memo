@@ -1,8 +1,9 @@
-import { GameField } from "./containers/main/main";
+import { COL, ROW } from "./containers/gameField/const";
+import { GameField } from "./containers/gameField";
 
 function App() {
   return (
-    <GameField row={5} col={5} />
+    <GameField row={ROW} col={COL} />
   );
 }
 

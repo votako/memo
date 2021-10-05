@@ -1,4 +1,4 @@
-export interface CatInterface {
+export interface CartInterface {
   id: number; 
   value: string; 
   color: string; 

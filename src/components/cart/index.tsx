@@ -1,7 +1,7 @@
-import { CatInterface } from './interface'
+import { CartInterface } from './interface'
 import { CartStyle } from './styled';
 
-interface CartInter extends CatInterface {
+interface CartInter extends CartInterface {
   onClick: () => void;
 }
 
