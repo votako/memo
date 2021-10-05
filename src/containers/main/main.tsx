@@ -1,4 +1,5 @@
 import Cart from "../../components/cart";
+import { CartInterface } from "../../components/cart/interface"
 import { GetField } from "./getField";
 import useMainState from "./state";
 import { Grid } from "./styled";
@@ -12,14 +13,15 @@ export const GameField = (size: {row: number, col: number}) => {
     notDoublet, 
     checkCart 
   } = useMainState(getField);
-  
+  const onClick = (e: CartInterface) => e.clicked ? "" : checkCart(e)
+
   if(doublet.length === 2){
     doublet[0].value === doublet[1].value ? Doublet(doublet) : notDoublet(doublet, 300)
   }
+  
   return (
     <Grid>
       {field.map(el => {
-        const onClick = () => el.clicked ? ()=>{} : checkCart(el);
         return (
           <Cart
             key={el.id}
