@@ -1,60 +1,38 @@
-import { useState } from "react";
 import Cart from "../../components/cart";
 import { GetField } from "./getField";
-import { Game, HorizRow, Main as MainDiv } from "./styled";
+import useMainState from "./state";
+import { Grid } from "./styled";
 
-interface fieldInter {
-    row: number,
-    col: number,
-    val: number,
-}
-
-const initalState = {
-    rowcol: false,
-    name: "",
-    row1: [],
-    col: [],
-    val: 0,
-}
-
-export const Main = () => {
-  let field = GetField();
-  let [colorState, setColor] = useState("[]");
-    
-    // setColor( prevState => ({
-    //     ...prevState,
-    //     row1: colorState.row1.push([1,2,3])
-    // }))
-  const onClick = (el: fieldInter) => {
-    console.log(el);
-    console.log(field[el.row][el.col]);
-  };
-
+export const GameField = (size: {row: number, col: number}) => {  
+  let getField = GetField(size.row, size.col);
+  const { 
+    field, 
+    doublet, 
+    Doublet, 
+    notDoublet, 
+    checkCart 
+  } = useMainState(getField);
+  
+  if(doublet.length === 2){
+    doublet[0].value === doublet[1].value ? Doublet(doublet) : notDoublet(doublet, 300)
+  }
   return (
-    <MainDiv>
-      <Game>
-        {field.map((arrRow, indexRow) => {
-          return (
-            <HorizRow key={indexRow}>
-              { arrRow.map((col, indexCol) => {
-                //   setColor(colorState="asd")
-                return (
-                  <Cart
-                    // click={() => onClick("row: " + indexRow + " col: " + indexCol + " val: " + col)}
-                    click={() => onClick({row: indexRow, col: indexCol, val: col})}
-                    // click={() => setColor(!colorState)}
-                    key={indexRow + " " + indexCol}
-                    id={ {id: indexRow + " " + indexCol, isClicked: false} }
-                    // isClicked={colorState ? true : false}
-                    // color={false}
-                    value={col}
-                  />
-                );
-              }) }
-            </HorizRow>
-          );
-        })}
-      </Game>
-    </MainDiv>
+    <Grid>
+      {field.map(el => {
+        const onClick = () => el.clicked ? ()=>{} : checkCart(el);
+        return (
+          <Cart
+            key={el.id}
+            id={el.id}
+            value={el.clicked ? el.value : "="}
+            // value={el.value}
+            color={el.clicked ? "darkgrey" : "grey"}
+            onClick={onClick}
+            clicked={el.clicked}
+            double={el.double}
+          />
+        );
+      })}
+    </Grid>
   );
 };
