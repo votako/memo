@@ -2,14 +2,13 @@ import { CartInterface } from './interface'
 import { CartStyle } from './styled';
 
 interface CartInter extends CartInterface {
-  onClick: (el: CartInterface) => void;
+  onClick: () => void;
 }
 
 const Cart = (props: CartInter) => {
-  const handleClick = () => props.onClick(props)
   return (
     <CartStyle
-      onClick={handleClick} 
+      onClick={props.onClick} 
       color={props.color}
     >
       {props.value}
