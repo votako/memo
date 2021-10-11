@@ -1,5 +1,5 @@
-import { CartInterface } from './interface'
-import { CartStyle } from './styled';
+import { CartInterface } from "./interface";
+import { CartStyle } from "./styled";
 
 interface CartInter extends CartInterface {
   onClick: () => void;
@@ -7,10 +7,7 @@ interface CartInter extends CartInterface {
 
 const Cart = (props: CartInter) => {
   return (
-    <CartStyle
-      onClick={props.onClick} 
-      color={props.color}
-    >
+    <CartStyle onClick={props.onClick} color={props.color}>
       {props.value}
     </CartStyle>
   );
