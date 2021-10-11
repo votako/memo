@@ -1,4 +1,4 @@
-export const ROW = 4
-export const COL = 4
-export const FORWARD = "grey"
-export const BACK = "darkgrey"
+export const ROW = 5;
+export const COL = 5;
+export const FORWARD = "grey";
+export const BACK = "darkgrey";

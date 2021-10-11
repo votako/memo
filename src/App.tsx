@@ -1,10 +1,7 @@
-import { COL, ROW } from "./containers/gameField/const";
-import { GameField } from "./containers/gameField";
+import { MainScreen } from "./containers/mainScreen";
 
 function App() {
-  return (
-    <GameField row={ROW} col={COL} />
-  );
+  return <MainScreen />;
 }
 
 export default App;
